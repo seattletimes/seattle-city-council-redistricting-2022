@@ -1,0 +1,112 @@
+@import "seattletimes";
+
+@aspect-ratio: 8/10;
+
+
+
+.interactive {
+  max-width: 700px;
+  margin: auto;
+
+  .graphic-chatter {
+     text-align: left;
+  }
+
+  .data-source {
+    margin-bottom: 0px;
+  }
+  .art-credit {
+    margin-top: 0px;
+  }
+}
+
+.aspect-ratio-outer {
+  width: 100%;
+  position: relative;
+  .aspect-ratio-inner {
+    padding-bottom: percentage(@aspect-ratio);
+    position: relative;
+  }
+  leaflet-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    &:not([ready]) {
+      display: none;
+    }
+  }
+}
+
+.buttonCon {
+  margin: 1em auto;
+  font-size: 0px;
+
+  .instruction {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 15px;
+    color: @df-middle-gray;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+
+
+  .button {
+    width: ~"calc(50% - 10px)";
+    display: inline-block;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: @df-light-gray;
+    margin: 2px 0px 10px 0px;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    @media @mobile {
+      // width: ~"calc(50% - 3px)";
+      width: 100%;
+      font-size: 17px;
+      display: block;
+    }
+
+    &.active {
+      background-color: #afafaf;
+      // text-decoration: underline;
+      -webkit-box-shadow:inset 0px 0px 0px 2px #000;
+      -moz-box-shadow:inset 0px 0px 0px 2px #000;
+      box-shadow:inset 0px 0px 0px 2px #000;
+    }
+  }
+
+  .button:nth-child(odd){
+    margin-right: 10px;
+    @media @mobile { margin-right: 3px; }
+  }
+  .button:nth-child(even){
+    margin-left: 10px;
+    @media @mobile { margin-left: 3px; }
+  }
+
+  .button#main {
+    width: 100%;
+    display: block;
+    margin: 2px 0px 10px 0px;
+
+    span {
+      display: inline-block;
+      width: 80px;
+      height: 4px;
+      border-bottom: 3px solid black;
+      vertical-align: middle;
+      margin-left: 15px;
+      @media @mobile {margin-left: 5px;}
+    }
+  }
+
+  .button:hover {
+    background-color: #afafaf;
+  }
+}

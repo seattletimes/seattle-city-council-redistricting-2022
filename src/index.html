@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <%= t.include("partials/_head.html", grunt.data.json) %>
+    <% if (!json.project.embedded) { %>
+      <%= t.include("partials/_dataLayer.html") %>
+      <script src="https://seattle-times.zeustechnology.com/main.js" async></script>
+      <script src="https://www.seattletimes.com/wp-content/plugins/st-advertising/dist/st-projects-bundle.js" async></script>
+    <% } %>
+    <% if (json.project.production && !json.project.embedded) { %>
+      <%= t.include("partials/_gtm.html") %>
+    <% } %>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <% if (json.project.production && !json.project.embedded) { %>
+      <%= t.include("partials/_gtmNoScript.html") %>
+    <% } %>
+    <responsive-child class="interactive" id="interactive">
+              <h3 class="graphic-hed">
+                Proposed congressional district maps
+              </h3>
+
+              <h4 class="graphic-chatter">
+                Democrats and Republicans on the state redistricting commission have proposed competing
+                new maps for Washington's 10 congressional districts. Both parties are looking for competitive
+                edges, as the new maps will be in place for the 2022 midterm elections.
+              </h4>
+
+              <div class="graphic-chatter">Click below on a commissioner's name to see their proposed plan, and click the map to highlight each district.</div>
+              <!-- content goes here -->
+              <div class="buttonCon">
+                <!-- <div id="cases" class="button">Total cases</div> -->
+                <div id="main" class="button active">Current city council districts <span class="line"></span></div>
+                <div class="instruction">Proposed districts</div>
+                <div id="prop1" class="button">Proposal 1</div>
+                <div id="prop2" class="button">Proposal 2</div>
+                <div id="prop3" class="button">Proposal 3</div>
+                <div id="prop4" class="button">Proposal 4</div>
+              </div>
+
+              <div id="map" class="aspect-ratio-outer">
+                <div class="aspect-ratio-inner">
+
+                  <leaflet-map zoom=7>
+                    <tile-layer layer="cartoPositron"></tile-layer>
+                  </leaflet-map>
+
+                </div>
+              </div>
+
+
+              <!-- <p class="data-source">* Vaccination rate refers to those receiving at least one dose.</p> -->
+
+              <figcaption class="source-container">
+                  <p class="data-source">Source:
+                    <a href="https://www.redistricting.wa.gov/proposed-congressional-maps" target="_blank" rel="nofollow noreferrer noopener">Washington State Redistricting Commission</a>
+                  </p>
+                  <p class="art-credit">Lauren Flannery / The Seattle Times</p>
+                </figcaption>
+      </responsive-child>
+
+    <script src="app.js" async></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_analytics.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>
